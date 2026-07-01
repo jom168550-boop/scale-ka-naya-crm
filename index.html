@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScaleMedia CRM - Modern Outreach Management</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f172a',
+                        darker: '#0b0f19',
+                        card: 'rgba(30, 41, 59, 0.7)',
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex h-screen overflow-hidden text-gray-100 bg-darker">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 glass flex flex-col h-full transition-all duration-300 z-20 hidden md:flex">
+        <!-- Logo -->
+        <div class="h-20 flex items-center px-6 border-b border-white/10">
+            <div class="w-8 h-8 rounded bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mr-3 font-bold text-lg shadow-lg">S</div>
+            <h1 class="text-xl font-bold tracking-wider text-gradient">ScaleMedia</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
+            <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 mt-4">Main</p>
+            <a href="#" data-target="dashboard" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors active-nav">
+                <i class="fa-solid fa-chart-pie w-6"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="#" data-target="leads" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-users w-6"></i>
+                <span class="font-medium">Leads</span>
+                <span class="ml-auto bg-blue-500/20 text-blue-400 py-0.5 px-2 rounded-full text-xs">24</span>
+            </a>
+            
+            <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 mt-6">Outreach</p>
+            <a href="#" data-target="calls" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-phone w-6"></i>
+                <span class="font-medium">Calls</span>
+            </a>
+            <a href="#" data-target="whatsapp" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-brands fa-whatsapp w-6 text-green-400"></i>
+                <span class="font-medium">WhatsApp</span>
+            </a>
+            <a href="#" data-target="instagram" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-brands fa-instagram w-6 text-pink-400"></i>
+                <span class="font-medium">Instagram DMs</span>
+            </a>
+            <a href="#" data-target="followups" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-calendar-check w-6"></i>
+                <span class="font-medium">Follow-Ups</span>
+                <span class="ml-auto bg-red-500/20 text-red-400 py-0.5 px-2 rounded-full text-xs">5</span>
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 mt-6">Sales</p>
+            <a href="#" data-target="meetings" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-video w-6"></i>
+                <span class="font-medium">Meetings</span>
+            </a>
+            <a href="#" data-target="proposals" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-file-invoice-dollar w-6"></i>
+                <span class="font-medium">Proposals</span>
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 mt-6">Management</p>
+            <a href="#" data-target="analytics" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-chart-line w-6"></i>
+                <span class="font-medium">Analytics</span>
+            </a>
+            <a href="#" data-target="team" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-users-cog w-6"></i>
+                <span class="font-medium">Team</span>
+            </a>
+            <a href="#" data-target="settings" class="nav-link flex items-center px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-gear w-6"></i>
+                <span class="font-medium">Settings</span>
+            </a>
+        </nav>
+
+        <!-- User profile -->
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center hover:bg-white/5 p-2 rounded-lg cursor-pointer transition-colors">
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b82f6&color=fff" alt="Profile" class="w-10 h-10 rounded-full border-2 border-blue-500/50">
+                <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-white truncate">Alex Founder</p>
+                    <p class="text-xs text-gray-400 truncate">alex@scalemedia.co.in</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-w-0 relative">
+        
+        <!-- Top Navbar -->
+        <header class="h-20 glass-header flex items-center justify-between px-6 z-10 relative">
+            <div class="flex items-center">
+                <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white mr-4">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div class="relative hidden sm:block">
+                    <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" placeholder="Search leads, calls..." class="bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 text-white placeholder-gray-400 transition-all focus:w-80 glass">
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button class="relative text-gray-400 hover:text-white transition-colors w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center">
+                    <i class="fa-regular fa-bell text-xl"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-dark"></span>
+                </button>
+                <button id="quick-add-btn" class="btn-modern bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-5 py-2 rounded-full font-medium text-sm shadow-lg shadow-blue-500/20 flex items-center">
+                    <i class="fa-solid fa-plus mr-2"></i> Quick Add
+                </button>
+            </div>
+        </header>
+
+        <!-- Scrollable Views Container -->
+        <main class="flex-1 overflow-y-auto p-6 relative custom-scrollbar bg-dark">
+            
+            <!-- Dashboard View -->
+            <section id="view-dashboard" class="view-section active animate-fade-in">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Dashboard Overview</h2>
+                        <p class="text-gray-400 text-sm">Welcome back, here's what's happening today.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <select class="glass bg-transparent border border-white/10 rounded-lg px-4 py-2 text-sm text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Card 1 -->
+                    <div class="glass rounded-2xl p-6 relative overflow-hidden group stagger-1 animate-fade-in">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium mb-1">Total Leads</p>
+                                <h3 class="text-3xl font-bold text-white">1,284</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                <i class="fa-solid fa-users text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <span class="text-emerald-400 flex items-center font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +12.5%</span>
+                            <span class="text-gray-500 ml-2">vs last month</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="glass rounded-2xl p-6 relative overflow-hidden group stagger-2 animate-fade-in">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium mb-1">Calls Made Today</p>
+                                <h3 class="text-3xl font-bold text-white">48</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                                <i class="fa-solid fa-phone text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <span class="text-emerald-400 flex items-center font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +4</span>
+                            <span class="text-gray-500 ml-2">vs yesterday</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass rounded-2xl p-6 relative overflow-hidden group stagger-3 animate-fade-in">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium mb-1">Pending Follow-Ups</p>
+                                <h3 class="text-3xl font-bold text-white text-orange-400">12</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center">
+                                <i class="fa-solid fa-clock text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <span class="text-red-400 flex items-center font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i> 3 Overdue</span>
+                            <span class="text-gray-500 ml-2">Needs attention</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="glass rounded-2xl p-6 relative overflow-hidden group stagger-4 animate-fade-in">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium mb-1">Closed Clients</p>
+                                <h3 class="text-3xl font-bold text-white">8</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                <i class="fa-solid fa-check-double text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <span class="text-emerald-400 flex items-center font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> 22.5%</span>
+                            <span class="text-gray-500 ml-2">Conversion rate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Main Chart -->
+                    <div class="glass rounded-2xl p-6 lg:col-span-2">
+                        <h3 class="text-lg font-semibold text-white mb-4">Monthly Outreach Performance</h3>
+                        <div class="h-72 w-full">
+                            <canvas id="outreachChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Secondary Chart -->
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-lg font-semibold text-white mb-4">Lead Sources</h3>
+                        <div class="h-64 w-full flex justify-center items-center relative">
+                            <canvas id="sourceChart"></canvas>
+                            <div class="absolute inset-0 flex items-center justify-center flex-col pointer-events-none mt-4">
+                                <span class="text-2xl font-bold text-white">100%</span>
+                                <span class="text-xs text-gray-400">Total Leads</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Upcoming Tasks -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="glass rounded-2xl p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-semibold text-white">Recent Activity feed</h3>
+                            <button class="text-sm text-blue-400 hover:text-blue-300">View All</button>
+                        </div>
+                        <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+                            
+                            <!-- Activity Item -->
+                            <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-blue-500/20 text-blue-400 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                    <i class="fa-solid fa-phone text-sm"></i>
+                                </div>
+                                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-4 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between space-x-2 mb-1">
+                                        <div class="font-bold text-white">Call with Sunrise Preschool</div>
+                                        <time class="text-xs font-medium text-gray-500">10 min ago</time>
+                                    </div>
+                                    <div class="text-sm text-gray-400">Status marked as <span class="text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded">Interested</span>. Arranging meeting.</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Activity Item -->
+                            <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-purple-500/20 text-purple-400 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                    <i class="fa-solid fa-file-invoice text-sm"></i>
+                                </div>
+                                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-4 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between space-x-2 mb-1">
+                                        <div class="font-bold text-white">Proposal Sent</div>
+                                        <time class="text-xs font-medium text-gray-500">2 hours ago</time>
+                                    </div>
+                                    <div class="text-sm text-gray-400">Sent to Elite Dental Clinic. Value: ₹45,000</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-semibold text-white">Upcoming Tasks</h3>
+                            <button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-300 transition-colors">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Task -->
+                            <div class="glass p-4 rounded-xl border border-white/5 hover:border-white/20 transition-colors flex items-start gap-4">
+                                <div class="mt-1 w-5 h-5 rounded border-2 border-gray-500 flex items-center justify-center cursor-pointer hover:border-blue-400 text-transparent hover:text-blue-400 transition-colors">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-medium mb-1">Follow up with FitLife Gym</h4>
+                                    <p class="text-sm text-gray-400 mb-2">Discuss social media management package</p>
+                                    <div class="flex items-center gap-3 text-xs">
+                                        <span class="flex items-center text-red-400 bg-red-500/10 px-2 py-1 rounded-md"><i class="fa-regular fa-clock mr-1"></i> Today, 4:00 PM</span>
+                                        <span class="flex items-center text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md"><i class="fa-solid fa-phone mr-1"></i> Call</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Task -->
+                            <div class="glass p-4 rounded-xl border border-white/5 hover:border-white/20 transition-colors flex items-start gap-4">
+                                <div class="mt-1 w-5 h-5 rounded border-2 border-gray-500 flex items-center justify-center cursor-pointer hover:border-blue-400 text-transparent hover:text-blue-400 transition-colors">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-medium mb-1">Zoom Meeting: Dr. Sharma</h4>
+                                    <p class="text-sm text-gray-400 mb-2">Finalize proposal and signing</p>
+                                    <div class="flex items-center gap-3 text-xs">
+                                        <span class="flex items-center text-orange-400 bg-orange-500/10 px-2 py-1 rounded-md"><i class="fa-regular fa-clock mr-1"></i> Tomorrow, 11:30 AM</span>
+                                        <span class="flex items-center text-purple-400 bg-purple-500/10 px-2 py-1 rounded-md"><i class="fa-solid fa-video mr-1"></i> Video</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Will add other sections here dynamically or chunk by chunk -->
+            <!-- Leads View -->
+            <section id="view-leads" class="view-section animate-fade-in">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Leads Management</h2>
+                        <p class="text-gray-400 text-sm">Track and manage your potential clients.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="glass px-4 py-2 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors flex items-center">
+                            <i class="fa-solid fa-filter mr-2"></i> Filters
+                        </button>
+                        <button id="add-lead-btn" class="btn-modern bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg shadow-blue-500/20 flex items-center">
+                            <i class="fa-solid fa-plus mr-2"></i> Add Lead
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl border border-white/5 overflow-hidden flex flex-col">
+                    <div class="p-4 border-b border-white/5 flex justify-between items-center bg-white/5">
+                        <div class="relative w-64">
+                            <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="leads-search" placeholder="Search leads..." class="w-full bg-dark/50 border border-white/10 rounded-lg py-1.5 pl-9 pr-4 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400">
+                            Showing 1-10 of 1,284
+                            <div class="ml-4 flex gap-1">
+                                <button class="w-7 h-7 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors disabled:opacity-50"><i class="fa-solid fa-chevron-left"></i></button>
+                                <button class="w-7 h-7 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-sm text-gray-300 min-w-[1000px]">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-400 border-b border-white/5 font-semibold">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Business</th>
+                                    <th scope="col" class="px-6 py-4">Contact</th>
+                                    <th scope="col" class="px-6 py-4">Category</th>
+                                    <th scope="col" class="px-6 py-4">Status</th>
+                                    <th scope="col" class="px-6 py-4">Priority</th>
+                                    <th scope="col" class="px-6 py-4">Next Follow-Up</th>
+                                    <th scope="col" class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-table-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calls View -->
+            <section id="view-calls" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Calls Tracking</h2>
+                        <p class="text-gray-400 text-sm">Monitor and log your phone outreach.</p>
+                    </div>
+                    <button id="add-call-btn" class="btn-modern bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-phone-volume mr-2"></i> Log New Call
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="glass p-4 rounded-xl border border-white/5">
+                        <p class="text-gray-400 text-xs font-medium mb-1">Total Today</p>
+                        <h3 class="text-2xl font-bold text-white">48</h3>
+                    </div>
+                    <div class="glass p-4 rounded-xl border border-white/5">
+                        <p class="text-gray-400 text-xs font-medium mb-1">Picked Up</p>
+                        <h3 class="text-2xl font-bold text-emerald-400">22</h3>
+                    </div>
+                    <div class="glass p-4 rounded-xl border border-white/5">
+                        <p class="text-gray-400 text-xs font-medium mb-1">Interested</p>
+                        <h3 class="text-2xl font-bold text-blue-400">8</h3>
+                    </div>
+                    <div class="glass p-4 rounded-xl border border-white/5">
+                        <p class="text-gray-400 text-xs font-medium mb-1">Avg Duration</p>
+                        <h3 class="text-2xl font-bold text-purple-400">4m 12s</h3>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl border border-white/5 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5"><h3 class="font-medium text-white">Recent Call Logs</h3></div>
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-sm text-gray-300 min-w-[800px]">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-400 border-b border-white/5">
+                                <tr>
+                                    <th class="px-6 py-4">Lead Name</th>
+                                    <th class="px-6 py-4">Date/Time</th>
+                                    <th class="px-6 py-4">Duration</th>
+                                    <th class="px-6 py-4">Result</th>
+                                    <th class="px-6 py-4">Next Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calls-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WhatsApp View -->
+            <section id="view-whatsapp" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1"><i class="fa-brands fa-whatsapp text-green-400 mr-2"></i> WhatsApp CRM</h2>
+                        <p class="text-gray-400 text-sm">Manage your WhatsApp conversations.</p>
+                    </div>
+                    <button id="add-broadcast-btn" class="btn-modern bg-gradient-to-r from-green-600 to-green-500 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Broadcast
+                    </button>
+                </div>
+
+                <div class="glass rounded-2xl border border-white/5 overflow-hidden">
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-sm text-gray-300 min-w-[800px]">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-400 border-b border-white/5">
+                                <tr>
+                                    <th class="px-6 py-4">Lead</th>
+                                    <th class="px-6 py-4">Number</th>
+                                    <th class="px-6 py-4">Last Message</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Follow-Up</th>
+                                </tr>
+                            </thead>
+                            <tbody id="whatsapp-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instagram View -->
+            <section id="view-instagram" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1"><i class="fa-brands fa-instagram text-pink-400 mr-2"></i> Instagram DM Tracker</h2>
+                        <p class="text-gray-400 text-sm">Manage your Instagram outreach.</p>
+                    </div>
+                    <button id="add-dm-btn" class="btn-modern bg-gradient-to-r from-pink-600 to-pink-500 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> New DM
+                    </button>
+                </div>
+                <div class="glass rounded-2xl border border-white/5 overflow-hidden">
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-sm text-gray-300 min-w-[800px]">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-400 border-b border-white/5">
+                                <tr>
+                                    <th class="px-6 py-4">IG Handle</th>
+                                    <th class="px-6 py-4">Business</th>
+                                    <th class="px-6 py-4">Last DM</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Next Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="instagram-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Followups View -->
+            <section id="view-followups" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Follow-Up Management</h2>
+                        <p class="text-gray-400 text-sm">Never miss a follow-up.</p>
+                    </div>
+                    <button id="add-followup-btn" class="btn-modern bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-clock mr-2"></i> Add Follow-Up
+                    </button>
+                </div>
+                <!-- Kanban/List Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Overdue -->
+                    <div class="glass rounded-xl p-4 border-t-4 border-t-red-500">
+                        <h3 class="font-bold text-white mb-4 flex justify-between">Overdue <span class="bg-red-500/20 text-red-400 text-xs px-2 py-0.5 rounded-full">3</span></h3>
+                        <div class="space-y-3" id="followups-overdue"></div>
+                    </div>
+                    <!-- Today -->
+                    <div class="glass rounded-xl p-4 border-t-4 border-t-blue-500">
+                        <h3 class="font-bold text-white mb-4 flex justify-between">Today <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-0.5 rounded-full">5</span></h3>
+                        <div class="space-y-3" id="followups-today"></div>
+                    </div>
+                    <!-- Upcoming -->
+                    <div class="glass rounded-xl p-4 border-t-4 border-t-gray-500">
+                        <h3 class="font-bold text-white mb-4 flex justify-between">Upcoming <span class="bg-gray-500/20 text-gray-400 text-xs px-2 py-0.5 rounded-full">8</span></h3>
+                        <div class="space-y-3" id="followups-upcoming"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Meetings View -->
+            <section id="view-meetings" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Meetings & Calendar</h2>
+                        <p class="text-gray-400 text-sm">Schedule and track sales meetings.</p>
+                    </div>
+                    <button id="add-meeting-btn" class="btn-modern bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-calendar-plus mr-2"></i> Schedule Meeting
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 glass rounded-2xl p-6 border border-white/5">
+                        <h3 class="font-bold text-white mb-4">Upcoming Meetings</h3>
+                        <div class="space-y-4" id="meetings-list"></div>
+                    </div>
+                    <div class="glass rounded-2xl p-6 border border-white/5 h-fit">
+                        <h3 class="font-bold text-white mb-4">Quick Stats</h3>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between text-sm"><span class="text-gray-400">This Week:</span> <span class="text-white font-bold">12 Meetings</span></li>
+                            <li class="flex justify-between text-sm"><span class="text-gray-400">Avg Closing Rate:</span> <span class="text-emerald-400 font-bold">35%</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Proposals View -->
+            <section id="view-proposals" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Proposal Tracking</h2>
+                        <p class="text-gray-400 text-sm">Manage sent proposals and contracts.</p>
+                    </div>
+                    <button id="add-proposal-btn" class="btn-modern bg-gradient-to-r from-purple-600 to-purple-500 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-file-signature mr-2"></i> Create Proposal
+                    </button>
+                </div>
+                <div class="glass rounded-2xl border border-white/5 overflow-hidden">
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-sm text-gray-300 min-w-[800px]">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-400 border-b border-white/5">
+                                <tr>
+                                    <th class="px-6 py-4">Client</th>
+                                    <th class="px-6 py-4">Value</th>
+                                    <th class="px-6 py-4">Date Sent</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="proposals-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics View -->
+            <section id="view-analytics" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Analytics Dashboard</h2>
+                        <p class="text-gray-400 text-sm">Deep dive into your agency's performance.</p>
+                    </div>
+                    <button id="refresh-analytics-btn" class="btn-modern bg-gradient-to-r from-gray-600 to-gray-500 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-rotate-right mr-2"></i> Refresh Data
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="font-bold text-white mb-4">Revenue Growth</h3>
+                        <div class="h-64 w-full">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="font-bold text-white mb-4">Channel Performance</h3>
+                        <div class="h-64 w-full">
+                            <canvas id="channelChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team View -->
+            <section id="view-team" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Team Management</h2>
+                        <p class="text-gray-400 text-sm">Manage your sales and outreach team.</p>
+                    </div>
+                    <button id="add-member-btn" class="btn-modern bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Invite Member
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="team-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="view-settings" class="view-section animate-fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-1">Settings</h2>
+                        <p class="text-gray-400 text-sm">Configure your CRM preferences.</p>
+                    </div>
+                    <button class="btn-modern bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors">
+                        Save Changes
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="space-y-6 lg:col-span-2">
+                        <!-- Agency Profile -->
+                        <div class="glass rounded-2xl p-6">
+                            <h3 class="font-bold text-white mb-4 border-b border-white/10 pb-2">Agency Profile</h3>
+                            <form class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-400 mb-1">Agency Name</label>
+                                        <input type="text" value="ScaleMedia" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-400 mb-1">Contact Email</label>
+                                        <input type="email" value="contact@scalemedia.co.in" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-blue-500">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">Website URL</label>
+                                    <input type="url" value="https://scalemedia.co.in" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-blue-500">
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Supabase Integration -->
+                        <div class="glass rounded-2xl p-6">
+                            <h3 class="font-bold text-white mb-4 border-b border-white/10 pb-2 flex justify-between items-center">
+                                <span>Supabase Integration</span>
+                                <span id="supabase-status-badge" class="text-xs px-2 py-0.5 rounded font-normal bg-yellow-500/20 text-yellow-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-circle-question"></i> Not Connected
+                                </span>
+                            </h3>
+                            <form id="supabase-config-form" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-400 mb-1 uppercase tracking-wider">Project URL</label>
+                                    <input type="url" id="supabase-url-input" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="https://your-project.supabase.co">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-400 mb-1 uppercase tracking-wider">Anon / Public API Key</label>
+                                    <div class="relative">
+                                        <input type="password" id="supabase-key-input" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 pr-10 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                                        <button type="button" id="toggle-supabase-key" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors">
+                                            <i class="fa-solid fa-eye text-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 pt-2">
+                                    <button type="button" id="test-supabase-btn" class="flex-1 bg-white/5 hover:bg-white/10 text-white py-2 px-4 rounded-lg font-medium text-sm transition-colors border border-white/10 flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-plug"></i> Test Connection
+                                    </button>
+                                    <button type="submit" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white py-2 px-4 rounded-lg font-medium text-sm transition-colors shadow-lg shadow-blue-500/10 flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-floppy-disk"></i> Save Config
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <div class="mt-6 border-t border-white/10 pt-4">
+                                <h4 class="text-sm font-semibold text-gray-200 mb-2">Database Setup SQL</h4>
+                                <p class="text-xs text-gray-400 mb-3">Copy and execute this script inside your Supabase project's SQL Editor to set up all tables and enable public Row Level Security policies:</p>
+                                <button id="copy-sql-btn" class="w-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 py-2.5 px-4 rounded-lg font-semibold text-xs transition-colors border border-blue-500/20 flex items-center justify-center gap-2 mb-3">
+                                    <i class="fa-solid fa-copy"></i> Copy Database Setup SQL
+                                </button>
+                                <textarea id="supabase-sql-code" class="hidden">-- ScaleMedia CRM Database Tables Setup Schema
+-- Run this in your Supabase project's SQL Editor to set up all tables and enable public permissions.
+
+-- 1. Create Tables
+create table if not exists leads (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    business text not null,
+    contact text not null,
+    category text,
+    phone text,
+    status text,
+    priority text,
+    next_follow_up text
+);
+
+create table if not exists calls (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    lead text not null,
+    date text,
+    duration text,
+    result text,
+    action text
+);
+
+create table if not exists whatsapp (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    lead text not null,
+    number text,
+    last_msg text,
+    status text,
+    followup text
+);
+
+create table if not exists instagram (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    handle text not null,
+    business text,
+    last_dm text,
+    status text,
+    action text
+);
+
+create table if not exists followups (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    task text not null,
+    type text,
+    due text,
+    timing text
+);
+
+create table if not exists meetings (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    title text not null,
+    client text,
+    time text,
+    platform text
+);
+
+create table if not exists proposals (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    client text not null,
+    value text,
+    date text,
+    status text
+);
+
+create table if not exists team (
+    id uuid default gen_random_uuid() primary key,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    name text not null,
+    role text,
+    deals integer default 0,
+    revenue text default '₹0'
+);
+
+-- 2. Enable Row Level Security (RLS)
+alter table leads enable row level security;
+alter table calls enable row level security;
+alter table whatsapp enable row level security;
+alter table instagram enable row level security;
+alter table followups enable row level security;
+alter table meetings enable row level security;
+alter table proposals enable row level security;
+alter table team enable row level security;
+
+-- 3. Create Public Policies (Allows client-side CRUD integration)
+create policy "Allow public read leads" on leads for select using (true);
+create policy "Allow public insert leads" on leads for insert with check (true);
+create policy "Allow public delete leads" on leads for delete using (true);
+
+create policy "Allow public read calls" on calls for select using (true);
+create policy "Allow public insert calls" on calls for insert with check (true);
+create policy "Allow public delete calls" on calls for delete using (true);
+
+create policy "Allow public read whatsapp" on whatsapp for select using (true);
+create policy "Allow public insert whatsapp" on whatsapp for insert with check (true);
+create policy "Allow public delete whatsapp" on whatsapp for delete using (true);
+
+create policy "Allow public read instagram" on instagram for select using (true);
+create policy "Allow public insert instagram" on instagram for insert with check (true);
+create policy "Allow public delete instagram" on instagram for delete using (true);
+
+create policy "Allow public read followups" on followups for select using (true);
+create policy "Allow public insert followups" on followups for insert with check (true);
+create policy "Allow public delete followups" on followups for delete using (true);
+
+create policy "Allow public read meetings" on meetings for select using (true);
+create policy "Allow public insert meetings" on meetings for insert with check (true);
+create policy "Allow public delete meetings" on meetings for delete using (true);
+
+create policy "Allow public read proposals" on proposals for select using (true);
+create policy "Allow public insert proposals" on proposals for insert with check (true);
+create policy "Allow public delete proposals" on proposals for delete using (true);
+
+create policy "Allow public read team" on team for select using (true);
+create policy "Allow public insert team" on team for insert with check (true);
+create policy "Allow public delete team" on team for delete using (true);</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="font-bold text-white mb-4 border-b border-white/10 pb-2">Preferences</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-300">Dark Mode</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                  <input type="checkbox" checked class="sr-only peer">
+                                  <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-300">Email Notifications</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                  <input type="checkbox" checked class="sr-only peer">
+                                  <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    </div>
+
+    <!-- Add Lead Modal -->
+    <div id="add-lead-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-lg rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-lead-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white">Add New Lead</h3>
+                <button id="close-modal-btn" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <form id="add-lead-form" class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Business Name</label>
+                        <input type="text" id="lead-business" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="e.g. FitLife Gym">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Contact Person</label>
+                        <input type="text" id="lead-contact" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="e.g. Mike Tyson">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Phone</label>
+                        <input type="tel" id="lead-phone" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="+91...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Category</label>
+                        <select id="lead-category" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                            <option value="Education">Education</option>
+                            <option value="Fitness">Fitness</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Restaurant">Restaurant</option>
+                            <option value="B2B">B2B</option>
+                            <option value="Services">Services</option>
+                            <option value="Beauty">Beauty</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Status</label>
+                        <select id="lead-status" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                            <option value="New">New</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Interested">Interested</option>
+                            <option value="Proposal Sent">Proposal Sent</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Priority</label>
+                        <select id="lead-priority" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                            <option value="Hot">Hot</option>
+                            <option value="Warm" selected>Warm</option>
+                            <option value="Cold">Cold</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" id="cancel-modal-btn" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Save Lead</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Log Call Modal -->
+    <div id="add-call-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-call-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white">Log a Call</h3>
+                <button class="close-call-btn text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="add-call-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Lead Name</label>
+                    <input type="text" id="call-lead" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Duration</label>
+                        <input type="text" id="call-duration" placeholder="e.g. 5m 30s" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Result</label>
+                        <select id="call-result" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                            <option value="Interested">Interested</option>
+                            <option value="No Answer">No Answer</option>
+                            <option value="Call Back Later">Call Back Later</option>
+                            <option value="Meeting Booked">Meeting Booked</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Next Action</label>
+                    <input type="text" id="call-action" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" class="close-call-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Save Call</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Schedule Meeting Modal -->
+    <div id="add-meeting-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-meeting-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white">Schedule Meeting</h3>
+                <button class="close-meeting-btn text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="add-meeting-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Meeting Title</label>
+                    <input type="text" id="meeting-title" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Client / Lead</label>
+                    <input type="text" id="meeting-client" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Time</label>
+                        <input type="text" id="meeting-time" placeholder="e.g. Tomorrow, 11:00 AM" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Platform</label>
+                        <select id="meeting-platform" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                            <option value="Zoom">Zoom</option>
+                            <option value="Google Meet">Google Meet</option>
+                            <option value="In-Person">In-Person</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" class="close-meeting-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Broadcast Modal -->
+    <div id="add-broadcast-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-broadcast-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white"><i class="fa-brands fa-whatsapp text-green-400 mr-2"></i> New Broadcast</h3>
+                <button class="close-broadcast-btn text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="add-broadcast-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Target Lead</label>
+                    <input type="text" id="broadcast-lead" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-green-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Message</label>
+                    <textarea id="broadcast-msg" rows="3" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-green-500 transition-colors" placeholder="Type your message..."></textarea>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" class="close-broadcast-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-green-600 to-green-500 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invite Member Modal -->
+    <div id="add-member-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-member-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white">Invite Team Member</h3>
+                <button class="close-member-btn text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="add-member-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Name</label>
+                    <input type="text" id="member-name" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Role</label>
+                    <select id="member-role" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                        <option value="Sales Exec">Sales Exec</option>
+                        <option value="Account Manager">Account Manager</option>
+                        <option value="SDR">SDR</option>
+                    </select>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" class="close-member-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Invite</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Instagram DM Modal -->
+    <div id="add-dm-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-dm-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white"><i class="fa-brands fa-instagram text-pink-400 mr-2"></i> New DM</h3>
+                <button class="close-dm-btn text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="add-dm-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">IG Handle</label>
+                    <input type="text" id="dm-handle" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-pink-500 transition-colors" placeholder="@username">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Business Name</label>
+                    <input type="text" id="dm-business" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-pink-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Message</label>
+                    <textarea id="dm-msg" rows="3" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-pink-500 transition-colors" placeholder="Type your message..."></textarea>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" class="close-dm-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-pink-600 to-pink-500 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Send DM</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Follow-Up Modal -->
+    <div id="add-followup-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-followup-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white">Add Follow-Up</h3>
+                <button class="close-followup-btn text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="add-followup-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Task Description</label>
+                    <input type="text" id="followup-task" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="e.g. Call FitLife Gym">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Type</label>
+                        <select id="followup-type" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                            <option value="Call">Call</option>
+                            <option value="Email">Email</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Timing</label>
+                        <select id="followup-time" class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                            <option value="today">Today</option>
+                            <option value="upcoming">Upcoming</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Due</label>
+                    <input type="text" id="followup-due" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="e.g. 2:00 PM">
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" class="close-followup-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Proposal Modal -->
+    <div id="add-proposal-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-darker/80 backdrop-blur-sm transition-opacity">
+        <div class="glass w-full max-w-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="add-proposal-modal-content">
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-white/5">
+                <h3 class="text-lg font-bold text-white">Create Proposal</h3>
+                <button class="close-proposal-btn text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="add-proposal-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Client / Business</label>
+                    <input type="text" id="proposal-client" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Monthly Value (₹)</label>
+                    <input type="text" id="proposal-value" required class="w-full bg-dark/50 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors" placeholder="e.g. ₹35,000/mo">
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" class="close-proposal-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit" class="btn-modern bg-gradient-to-r from-purple-600 to-purple-500 text-white px-5 py-2 rounded-lg font-medium text-sm shadow-lg">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
+
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
